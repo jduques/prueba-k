@@ -1,0 +1,49 @@
+PRUEBA TECNICA PHP
+
+
+El proyecto se realizó en Laravel 10 usando Docker
+
+Para su puesta en marcha, se debe clonar el proyecto Docker:
+
+https://github.com/sprintcube/docker-compose-lamp.git
+
+Una vez clonado, ingresar al directorio ~/docker-compose-lamp/www/
+
+y crear una carpeta donde se va a clonar el proyecto prueba-k:
+
+https://github.com/jduques/prueba-k.git
+
+--------------------------------------------------
+
+Dentro del directorio ~/docker-compose-lamp, se encuentra el archivo:
+
+docker-compose.yml, este archivo debe ser modificado para agregar nuestro
+
+proyecto. En la primera parte llamada "servicios:" agregar la configuración
+
+de nuestro contenedor: 
+
+----------------------------------------------------
+services:
+  konecta:
+    build:
+      context: .
+      dockerfile: prueba-k/.docker/Dockerfile
+    image: 'prueba-k'
+    ports:
+      - 8082:80
+    volumes:
+      - ./www:/var/www
+    container_name: "${COMPOSE_PROJECT_NAME}-konecta"
+-----------------------------------------------------
+
+"prueba-k" es el directorio donde se instalará el proyecto
+
+Levantar el contenedor: sudo docker-compose up -d
+Si todo va bien, con el comando sudo docker ps, verá los contenedores que tenemos.
+
+A demas de esto debemos configurar nuestro mysql.
+
+El archivo ~/docker-compose-lamp/.env nos muestra la configuración de los contenedores
+
+
