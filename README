@@ -1,49 +1,101 @@
 PRUEBA TECNICA PHP
+------------------
 
 
-El proyecto se realizó en Laravel 10 usando Docker
+El proyecto se realizó en Laravel 10.
 
-Para su puesta en marcha, se debe clonar el proyecto Docker:
-
-https://github.com/sprintcube/docker-compose-lamp.git
-
-Una vez clonado, ingresar al directorio ~/docker-compose-lamp/www/
-
-y crear una carpeta donde se va a clonar el proyecto prueba-k:
+Para su puesta en marcha, debemos clonar el proyecto usando la dirección:
 
 https://github.com/jduques/prueba-k.git
 
---------------------------------------------------
+Si estamos trabajando en un proyecto de Laravel y usamos Git para el control de versiones, debemos saber unas cosas antes de clonar e intentar ejecutar nuestro proyecto.
+
+Por defecto, el archivo .gitignore no tomará en cuenta la carpeta “vendor” de Laravel, y tampoco el archivo .env (el cual es muy importante). Por ello, al clonar nuestro proyecto, debemos hacer unos pequeños ajustes antes.
+
+Una vez clonado nuestro proyecto, abriremos una terminal y nos situaremos en dicha carpeta, para nuestro caso la llamaremos ~/prueba-k/. Una vez estando ahí ejecutaremos:
+
+composer install
+
+Automáticamente composer leerá el archivo composer.json y comenzará a instalar todas las dependencias.
+
+Una vez que termine podemos seguir con el siguiente paso, crear el archivo ".env".
+
+Por razones de seguridad, el archivo .env no es subido junto al resto de los archivos del proyecto, ya que cada uno tiene contraseñas privadas, así que tenemos que generar uno por nosotros mismos. Podemos hacerlo desde el terminal y sobre nuestra carpeta "prueba-k" escribiremos:
+
+cp env.example .env
+
+Lo editamos con nuestras contraseñas, usuarios, rutas, etcétera. Por lo regular sólo se editan las credenciales de las bases de datos:
+
+DB_CONNECTION=mysql     ---> base de datos con la que el proyecto trabaja
+DB_HOST=172.18.0.4      ---> IP donde se ejecuta mysql
+DB_PORT=3306            ---> puerto de la base de datos
+DB_DATABASE=prueba-k    ---> nombre de nuestra base de datos
+DB_USERNAME=docker      ---> usuario principal del proyecto en mysql
+DB_PASSWORD=docker      ---> clave de usuario
+
+Cuando terminemos, sólo guardaremos el fichero para proceder con el paso final.
+
+Generar una clave.
+-----------------
+
+Laravel necesita una clave única para nuestros proyectos. La generaremos usando el comando:
+
+php artisan key:generate
+
+Esperaremos un momento y se habrá creado nuestra clave en el archivo ".env", similar a:
+
+APP_KEY=base64:8oqYHtAfu/JykUBidF6VtNeBjaO8u6vhn92/Mw1eWYs=
+
+Listo; con esto deberíamos poder correr ejecutar nuestra app sin problemas.
+
+=================================================================================================
+
+USANDO DOCKER
+-------------
+
+Se debe clonar el proyecto Docker:
+
+https://github.com/sprintcube/docker-compose-lamp.git
+
+Es un entorno LAMP Stack básico creado con Docker Compose. Consiste en lo siguiente:
+
+    PHP
+    Apache
+    MySQL
+    phpMyAdmin
+    Redis
+
+El proyecto tiene sus instrucciones de instalación.
+
+Otra opción para crear un entorno de desarrollo para nuestro proyecto en Laravel 10
+-----------------------------------------------------------------------------------
+
+https://medium.com/@eloufirhatim/add-docker-to-an-existing-laravel-10-project-1e6c383fc7a8
+
+Esta es otra buena opción para poner en marcha nuestro proyecto de una manera fácil.
+
+-------------------------------------------------------------------------------------------------
+
+Luego de instalar Docker, se debe ingresar al directorio ~/docker-compose-lamp/www/
+
+y crear una carpeta donde se va a clonar el proyecto prueba-k:
+
+~/docker-compose-lamp/www/prueba-k
+
+https://github.com/jduques/prueba-k.git
+
+-------------------------------------------------------------------------------------------------
 
 Dentro del directorio ~/docker-compose-lamp, se encuentra el archivo:
 
-docker-compose.yml, este archivo debe ser modificado para agregar nuestro
+docker-compose.yml, este archivo tiene la configuración de cada servicio necesario para nuestro
+proyecto: mysql, apache, phpmyadmin, php.
 
-proyecto. En la primera parte llamada "servicios:" agregar la configuración
+Para ejecuar nuestro proyecto, se debe abrir un navegador y escribir:
 
-de nuestro contenedor: 
+localhost (este se ejecuta en el puerto por defecto: 80)
 
-----------------------------------------------------
-services:
-  konecta:
-    build:
-      context: .
-      dockerfile: prueba-k/.docker/Dockerfile
-    image: 'prueba-k'
-    ports:
-      - 8082:80
-    volumes:
-      - ./www:/var/www
-    container_name: "${COMPOSE_PROJECT_NAME}-konecta"
------------------------------------------------------
+Si todo marcha bien, veremos una página del ambiente de desarrollo LAMP STACK.
+Para entrar a nuestro proyecto escribiremos:
 
-"prueba-k" es el directorio donde se instalará el proyecto
-
-Levantar el contenedor: sudo docker-compose up -d
-Si todo va bien, con el comando sudo docker ps, verá los contenedores que tenemos.
-
-A demas de esto debemos configurar nuestro mysql.
-
-El archivo ~/docker-compose-lamp/.env nos muestra la configuración de los contenedores
-
-
+localhost/prueba-k/public
