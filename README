@@ -1,18 +1,21 @@
 PRUEBA TECNICA PHP
 ------------------
 
-
 El proyecto se realizó en Laravel 10.
 
 Para su puesta en marcha, debemos clonar el proyecto usando la dirección:
 
 https://github.com/jduques/prueba-k.git
 
-Si estamos trabajando en un proyecto de Laravel y usamos Git para el control de versiones, debemos saber unas cosas antes de clonar e intentar ejecutar nuestro proyecto.
+Si estamos trabajando en un proyecto de Laravel y usamos Git para el control de versiones,
+debemos saber unas cosas antes de clonar e intentar ejecutar nuestro proyecto.
 
-Por defecto, el archivo .gitignore no tomará en cuenta la carpeta “vendor” de Laravel, y tampoco el archivo .env (el cual es muy importante). Por ello, al clonar nuestro proyecto, debemos hacer unos pequeños ajustes antes.
+Por defecto, el archivo .gitignore no tomará en cuenta la carpeta “vendor” de Laravel,
+y tampoco el archivo .env (el cual es muy importante). Por ello, al clonar nuestro proyecto,
+debemos hacer unos pequeños ajustes antes.
 
-Una vez clonado nuestro proyecto, abriremos una terminal y nos situaremos en dicha carpeta, para nuestro caso la llamaremos ~/prueba-k/. Una vez estando ahí ejecutaremos:
+Una vez clonado nuestro proyecto, abriremos una terminal y nos situaremos en dicha carpeta,
+para nuestro caso la llamaremos ~/prueba-k/. Una vez estando ahí ejecutaremos:
 
 composer install
 
@@ -20,11 +23,14 @@ Automáticamente composer leerá el archivo composer.json y comenzará a instala
 
 Una vez que termine podemos seguir con el siguiente paso, crear el archivo ".env".
 
-Por razones de seguridad, el archivo .env no es subido junto al resto de los archivos del proyecto, ya que cada uno tiene contraseñas privadas, así que tenemos que generar uno por nosotros mismos. Podemos hacerlo desde el terminal y sobre nuestra carpeta "prueba-k" escribiremos:
+Por razones de seguridad, el archivo .env no es subido junto al resto de los archivos del proyecto,
+ya que cada uno tiene contraseñas privadas, así que tenemos que generar uno por nosotros mismos.
+Podemos hacerlo desde el terminal y sobre nuestra carpeta "prueba-k" escribiremos:
 
 cp env.example .env
 
-Lo editamos con nuestras contraseñas, usuarios, rutas, etcétera. Por lo regular sólo se editan las credenciales de las bases de datos:
+Lo editamos con nuestras contraseñas, usuarios, rutas, etcétera.
+Por lo regular sólo se editan las credencialesde las bases de datos:
 
 DB_CONNECTION=mysql     ---> base de datos con la que el proyecto trabaja
 DB_HOST=172.18.0.4      ---> IP donde se ejecuta mysql
