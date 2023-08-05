@@ -3,21 +3,27 @@ PRUEBA TECNICA PHP
 
 El proyecto se realizó en Laravel 10.
 
-Para su puesta en marcha, debemos clonar el proyecto usando la dirección:
+Para iniciarlo debemos clonar el proyecto usando el comando:
 
-https://github.com/jduques/prueba-k.git
+---------------------------------------------------------------------------
+git clone https://github.com/jduques/prueba-k.git
+---------------------------------------------------------------------------
 
-Si estamos trabajando en un proyecto de Laravel y usamos Git para el control de versiones,
-debemos saber unas cosas antes de clonar e intentar ejecutar nuestro proyecto.
-
-Por defecto, el archivo .gitignore no tomará en cuenta la carpeta “vendor” de Laravel,
-y tampoco el archivo .env (el cual es muy importante). Por ello, al clonar nuestro proyecto,
-debemos hacer unos pequeños ajustes antes.
+Si usamos Git para el control de versiones, por defecto, el archivo .gitignore no tomará
+en cuenta la carpeta “vendor” de Laravel, y tampoco el archivo .env (el cual es muy importante).
+Por ello, al clonar nuestro proyecto, debemos hacer unos pequeños ajustes antes.
 
 Una vez clonado nuestro proyecto, abriremos una terminal y nos situaremos en dicha carpeta,
-para nuestro caso la llamaremos ~/prueba-k/. Una vez estando ahí ejecutaremos:
+para nuestro caso la llamaremos ~/prueba-k/.
 
+Creamos la carpeta y subcarpetas de "storage", (manejo de archivos en aplicaciones web)
+y le cambiamos los permismos para que los pueda manipular el navegador
+
+---------------------------------------------------------------------------
+mkdir -p storage/{framework/{sessions,views,cache,testing},app,logs}
+sudo chown -R www-data:www-data storage/
 composer install
+---------------------------------------------------------------------------
 
 Automáticamente composer leerá el archivo composer.json y comenzará a instalar todas las dependencias.
 
@@ -30,10 +36,10 @@ Podemos hacerlo desde el terminal y sobre nuestra carpeta "prueba-k" escribiremo
 cp env.example .env
 
 Lo editamos con nuestras contraseñas, usuarios, rutas, etcétera.
-Por lo regular sólo se editan las credencialesde las bases de datos:
+Por lo regular sólo se editan las credenciales de las bases de datos, usuario y clave:
 
 DB_CONNECTION=mysql     ---> base de datos con la que el proyecto trabaja
-DB_HOST=172.18.0.4      ---> IP donde se ejecuta mysql
+DB_HOST=127.0.0.1       ---> IP donde se ejecuta mysql
 DB_PORT=3306            ---> puerto de la base de datos
 DB_DATABASE=prueba-k    ---> nombre de nuestra base de datos
 DB_USERNAME=docker      ---> usuario principal del proyecto en mysql
@@ -46,62 +52,65 @@ Generar una clave.
 
 Laravel necesita una clave única para nuestros proyectos. La generaremos usando el comando:
 
+-----------------------------
 php artisan key:generate
+-----------------------------
 
 Esperaremos un momento y se habrá creado nuestra clave en el archivo ".env", similar a:
 
 APP_KEY=base64:8oqYHtAfu/JykUBidF6VtNeBjaO8u6vhn92/Mw1eWYs=
 
-Listo; con esto deberíamos poder correr ejecutar nuestra app sin problemas.
+Listo; con esto deberíamos poder ejecutar nuestra app sin problemas.
 
 =================================================================================================
 
 USANDO DOCKER
 -------------
 
-Se debe clonar el proyecto Docker:
+Luego de instala Docker, Se debe clonar el proyecto Docker, en el directorio de su preferencia, ejemplo: /home/user/
 
-https://github.com/sprintcube/docker-compose-lamp.git
+------------------------------------------------------------------
+git clone https://github.com/sprintcube/docker-compose-lamp.git
+------------------------------------------------------------------
 
-Es un entorno LAMP Stack básico creado con Docker Compose. Consiste en lo siguiente:
+Este es un entorno LAMP Stack básico creado con Docker Compose. Consiste en lo siguiente
 
-    PHP
-    Apache
-    MySQL
-    phpMyAdmin
-    Redis
+-----------------------------------------
+PHP, Apache, MySQL, phpMyAdmin, Redis
+-----------------------------------------
 
-El proyecto tiene sus instrucciones de instalación.
+Luego de clonar "docker-compose-lamp", se creará el directorio ~/docker-compose-lamp con todos los 
+archivos y directorios necesarios; entre ellos los archivos:
 
-Otra opción para crear un entorno de desarrollo para nuestro proyecto en Laravel 10
------------------------------------------------------------------------------------
+docker-compose.yml  (se deja igual sin modificar, a no ser que se quieran cambiar algunos valores)
+sample.env ( se cambia "PHPVERSION=php8" a "PHPVERSION=php81" y se crea una copia)
 
-https://medium.com/@eloufirhatim/add-docker-to-an-existing-laravel-10-project-1e6c383fc7a8
+------------------------
+cp sample.env a .env
+------------------------
 
-Esta es otra buena opción para poner en marcha nuestro proyecto de una manera fácil.
-
--------------------------------------------------------------------------------------------------
-
-Luego de instalar Docker, se debe ingresar al directorio ~/docker-compose-lamp/www/
-
-y crear una carpeta donde se va a clonar el proyecto prueba-k:
-
-~/docker-compose-lamp/www/prueba-k
-
-https://github.com/jduques/prueba-k.git
-
--------------------------------------------------------------------------------------------------
-
-Dentro del directorio ~/docker-compose-lamp, se encuentra el archivo:
-
-docker-compose.yml, este archivo tiene la configuración de cada servicio necesario para nuestro
+Estos archivos tienen la configuración de cada app necesaria para ejecutar nuestro
 proyecto: mysql, apache, phpmyadmin, php.
 
-Para ejecuar nuestro proyecto, se debe abrir un navegador y escribir:
+luego de generar la copia del archivo .env se debe ejecutar el siguiente comado para crear y levantar
+los contenedores:
+
+----------------------------
+docker-compose up -d
+----------------------------
+
+Luego se debe ingresar al directorio ~/docker-compose-lamp/www/
+
+y clonar el proyecto "prueba-k" y seguir las instrucciones iniciles. 
+
+Para ejecuar el proyecto "docker-compose-lamp", se debe abrir un navegador y escribir:
 
 localhost (este se ejecuta en el puerto por defecto: 80)
 
 Si todo marcha bien, veremos una página del ambiente de desarrollo LAMP STACK.
+
 Para entrar a nuestro proyecto escribiremos:
 
+---------------------------------
 localhost/prueba-k/public
+---------------------------------
