@@ -114,3 +114,18 @@ Para entrar a nuestro proyecto escribiremos:
 ---------------------------------
 localhost/prueba-k/public
 ---------------------------------
+
+Algunos comandos útiles en Docker
+---------------------------------
+
+visualizar los contenedores:
+
+------------
+docker ps 
+------------
+
+de aquí tomamos el CONTAINER ID que nos interesa y consultamos su IP:
+
+-------------------------------------------------------------------------------------------
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 59dd0b81fc64
+-------------------------------------------------------------------------------------------
