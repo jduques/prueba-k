@@ -39,7 +39,7 @@ Lo editamos con nuestras contraseñas, usuarios, rutas, etcétera.
 Por lo regular sólo se editan las credenciales de las bases de datos, usuario y clave:
 
 DB_CONNECTION=mysql     ---> base de datos con la que el proyecto trabaja
-DB_HOST=127.0.0.1       ---> IP donde se ejecuta mysql, si es en un container Docker, usar su IP
+DB_HOST=127.0.0.1       ---> IP donde se ejecuta mysql, si es en un container Docker, usar su IP, Container ID o Container Name
 DB_PORT=3306            ---> puerto de la base de datos
 DB_DATABASE=prueba-k    ---> nombre de nuestra base de datos
 DB_USERNAME=docker      ---> usuario principal del proyecto en mysql
