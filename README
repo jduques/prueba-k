@@ -3,7 +3,7 @@ PRUEBA TECNICA PHP
 
 El proyecto se realizó en Laravel 10.
 
-Para iniciarlo debemos clonar el proyecto usando el comando:
+Para iniciar debemos clonar el proyecto usando el comando:
 
 ---------------------------------------------------------------------------
 git clone https://github.com/jduques/prueba-k.git
@@ -11,13 +11,12 @@ git clone https://github.com/jduques/prueba-k.git
 
 Si usamos Git para el control de versiones, por defecto, el archivo .gitignore no tomará
 en cuenta la carpeta “vendor” de Laravel, y tampoco el archivo .env (el cual es muy importante).
-Por ello, al clonar nuestro proyecto, debemos hacer unos pequeños ajustes antes.
+Por ello, al clonar nuestro proyecto, debemos hacer unos ajustes necesarios.
 
-Una vez clonado nuestro proyecto, abriremos una terminal y nos situaremos en dicha carpeta,
-para nuestro caso la llamaremos ~/prueba-k/.
+Una vez clonado, abrimos una terminal y nos situaremos en ~/prueba-k/.
 
-Creamos la carpeta y subcarpetas de "storage", (manejo de archivos en aplicaciones web)
-y le cambiamos los permismos para que los pueda manipular el navegador
+Luego creamos los directorios de "storage", (manejo de archivos en aplicaciones web)
+y le cambiamos los permismos para que los pueda manipular el navegador e instalamos con composer
 
 ---------------------------------------------------------------------------
 mkdir -p storage/{framework/{sessions,views,cache,testing},app,logs}
