@@ -9,7 +9,6 @@ use App\Models\Producto;
 use App\Models\Venta;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\Redirect;
 
 

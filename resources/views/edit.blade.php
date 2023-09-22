@@ -1,30 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Prueba Técnica PHP</title>
-        <link rel="stylesheet" href="{{ asset('plugins/fontawesome6/css/all.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('plugins/bootstrap-5.3.1/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/personal.css') }}">
-        <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+@extends('layouts.app')
 
-        <!-- Styles -->
-
-
-    </head>
-    <body class="bg-dark">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-
-
-        
-    <div class="container-fluid mt-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-11 col-md-10 col-lg-8">
-                <div class="card rgba-grey-slight z-depth-2">
-                    <div class="card-body p-2">
-                        
+@section('content')
+         
+        <div class="row justify-content-center mt-4">
+            <div class="col-8">
         @if(isset($producto))
             <?php   $accion = "Editar Producto"; ?>
             <form action="{{ route('productos.update', ['id' => $id]) }}" method="POST">
@@ -108,22 +87,8 @@
                                 <button id="onclick" class="btn btn-warning">@if(isset($producto)) Guardar Cambios @else Guardar @endif <i class="fa fa-paper-plane"></i></button>
                             </div>
                         </div>
-                        {{ html()->form()->close() }}
-                    </div>
-                </div>
+            {{ html()->form()->close() }}
             </div>
         </div>
-    </div>
-
-
-
-
-
-
-        </div>
-        <script type="text/javascript" src="{{ asset('js/personal.js')  }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery-3.7.0.min.js')  }}"></script>
-        <script type="text/javascript" src="{{ asset('plugins/fontawesome6/js/all.min.js')  }}"></script>
-        <script type="text/javascript" src="{{ asset('plugins/bootstrap-5.3.1/js/bootstrap.min.js')  }}"></script>
-    </body>
-</html>
+           
+@endsection

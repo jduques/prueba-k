@@ -33,7 +33,9 @@ Por razones de seguridad, el archivo .env no es subido junto al resto de los arc
 ya que cada uno tiene contraseñas privadas, así que tenemos que generar uno por nosotros mismos.
 Podemos hacerlo desde el terminal y sobre nuestra carpeta "prueba-k" escribiremos:
 
+--------------------
 cp env.example .env
+--------------------
 
 Lo editamos con nuestras contraseñas, usuarios, rutas, etcétera.
 Por lo regular sólo se editan las credenciales de las bases de datos, usuario y clave:
@@ -62,7 +64,7 @@ APP_KEY=base64:8oqYHtAfu/JykUBidF6VtNeBjaO8u6vhn92/Mw1eWYs=
 
 Listo; con esto deberíamos poder ejecutar nuestra app sin problemas.
 
-=================================================================================================
+==================================================================================
 
 USANDO DOCKER
 -------------
